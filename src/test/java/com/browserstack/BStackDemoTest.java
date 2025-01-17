@@ -29,28 +29,20 @@ public class BStackDemoTest extends SeleniumTest {
     public void testElpaisTranslation() throws Exception {
         // navigate to bstackdemo
         Logger logger = Logger.getLogger(BStackDemoTest.class.getName());
-        String API_KEY="AIzaSyBkm_4-DCQ47vsWoaRpf8-vOt2ZHEXru7Q";
-//        DesiredCapabilities dcap = new DesiredCapabilities();
-//        dcap.setCapability("pageLoadStrategy", "eager");
-//        ChromeOptions opt = new ChromeOptions();
-//        opt.merge(dcap);
-//        WebDriver driver = new ChromeDriver(dcap);
+        //add key below
+        String API_KEY="";
         List<String> headerList=new ArrayList<>();
         driver.get("https://elpais.com");
         driver.manage().window().maximize();
         Thread.sleep(4000);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement cookiesaccept = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("didomi-notice-agree-button")));
         cookiesaccept.click();
         for(int i=1;i<=5;i++){
             String articlepath="/html/body/main/div[2]/section[1]/div/div/article["+i+"]/header/h2/a";
             WebElement homepage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("main")));
             Thread.sleep(5000);
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(articlepath)));
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(articlepath))).click();
-            //articleLink.click();
-//          Thread.sleep(6000);
             WebElement title =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/article/header/div[1]/h1")));
             logger.info("Title: "+title.getText());
             headerList.add(title.getText());
